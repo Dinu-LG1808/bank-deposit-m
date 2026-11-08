@@ -61,13 +61,6 @@ project-folder/
     |-- svm.joblib
 ```
 
-## How to Run Locally
-
-```
-pip install -r requirements.txt
-streamlit run app.py
-```
-
 ## Streamlit App Features
 
 * Upload a test CSV (must contain all 16 input features and the target column `y`)
