@@ -7,7 +7,7 @@ Task: Binary classification
 Target column: `deposit` (yes / no)
 Total features: 16 input features + 1 target (17 columns), which meets the minimum of 12 features
 Instances: about 11,000+ rows, which meets the minimum of 500
-Test set: 2,233 rows x 17 columns (`test\_data.csv`)
+Test set: 2,233 rows x 17 columns (`test\\\_data.csv`)
 Feature types: numeric (age, balance, day, duration, campaign, pdays, previous) and categorical (job, marital, education, default, housing, loan, contact, month, poutcome)
 Preprocessing: scaling of numeric features and encoding of categorical features, saved inside each sklearn pipeline
 c. GitHub Repository Link
@@ -35,13 +35,13 @@ project-folder/
 |-- app.py
 |-- requirements.txt
 |-- README.md
-|-- test\_data.csv
-|-- ML\_Assignment\_2.ipynb
+|-- test\\\_data.csv
+|-- ML\\\_Assignment\\\_2.ipynb
 |-- model/
-    |-- logistic\_regression.joblib
-    |-- decision\_tree.joblib
+    |-- logistic\\\_regression.joblib
+    |-- decision\\\_tree.joblib
     |-- knn.joblib
-    |-- naive\_bayes.joblib
+    |-- naive\\\_bayes.joblib
     |-- svm.joblib
 ```
 How to Run Locally
