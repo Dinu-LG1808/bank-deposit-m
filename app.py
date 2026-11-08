@@ -9,7 +9,7 @@ from sklearn.metrics import (accuracy_score, roc_auc_score, precision_score,
                              recall_score, f1_score, matthews_corrcoef,
                              confusion_matrix, classification_report)
 
-TARGET = "deposit"
+TARGET_CANDIDATES = ["deposit", "y", "target"]  # test_data.csv stores the label as "y" (0/1)
 MODEL_DIR = "model"
 MODEL_FILES = {
     "Logistic Regression": "logistic_regression.joblib",
@@ -46,13 +46,13 @@ uploaded = st.sidebar.file_uploader("Upload test CSV (with target column)", type
 model_name = st.sidebar.selectbox("Select model", list(MODEL_FILES.keys()))
 
 if uploaded is None:
-    st.info("👈 Upload your test CSV from the sidebar to begin. It must contain all input features and the 'deposit' column.")
+    st.info("👈 Upload your test CSV from the sidebar to begin. It must contain all 16 input features and the target column ('y' or 'deposit').")
     st.stop()
 
 df = pd.read_csv(uploaded)
-target_col = next((c for c in df.columns if c.lower() == TARGET), None)
+target_col = next((c for c in df.columns if c.lower() in TARGET_CANDIDATES), None)
 if target_col is None:
-    st.error(f"Target column '{TARGET}' not found. Columns present: {list(df.columns)}")
+    st.error(f"Target column not found (expected one of {TARGET_CANDIDATES}). Columns present: {list(df.columns)}")
     st.stop()
 
 with st.expander("Preview uploaded data", expanded=False):
@@ -65,7 +65,7 @@ classes = model.classes_
 y_true = encode_target(df[target_col], classes)
 
 if y_true.isna().any():
-    st.error("Could not map some target values to the model's classes. Check the 'deposit' column values.")
+    st.error("Could not map some target values to the model's classes. Check the target column values (0/1 or yes/no).")
     st.stop()
 
 try:
